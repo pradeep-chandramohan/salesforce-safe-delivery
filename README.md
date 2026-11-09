@@ -23,6 +23,7 @@ These rules come from those lessons.
 - **Fit how your team deploys.** In pipeline/CAB teams (the default, typical in government), Claude is the **release preparer**: PR, impact analysis and a ready-to-submit CAB release note. It never deploys to production. Small teams without a pipeline can let it deploy after an explicit GO.
 - **Use standard features first.** For each requirement it shows the out-of-the-box, declarative and Salesforce-product options before suggesting custom Apex or LWC, and says why custom is needed.
 - **Treat production as read-only:** queries only. In pipeline teams Claude never deploys; in direct-CLI teams every deploy shows components, diff and test level, then waits for your GO.
+- **Keep citizens' data out of the AI session.** From production it reads metadata, counts and IDs, never personal or sensitive field values. Built for orgs under HIPAA, IRS Pub. 1075 and state data-handling rules.
 - **Verify live, every time:** production, then sandbox, then local. Never assume git matches the org.
 - **Protect shared components:** build on the org's live source, additions only, and re-check before deploying.
 - **Build in the sandbox first**, preferring additive changes ("hide, don't remove").

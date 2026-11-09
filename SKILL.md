@@ -35,7 +35,9 @@ This skill holds Claude to the habits of a careful release lead.
 
    Never build custom integration code for something a standard feature already does. If custom leftovers exist in an org, don't deploy them without confirming they're still the chosen approach.
 2. **Production is read-only by default.**
-   - Reading is allowed without a GO: SOQL, Tooling API queries, and reading live source through the Tooling API, saved to a separate folder (e.g. `prod-live/`) outside your project.
+   - Reading is allowed without a GO: metadata, Tooling API queries, record counts and record IDs, and reading live source through the Tooling API, saved to a separate folder (e.g. `prod-live/`) outside your project.
+   - **Protect production data.** Don't pull personal or sensitive field values into the AI session: names, SSNs, dates of birth, addresses, contact details, health, income, case notes, free-text comments or attachments. Prefer `SELECT COUNT()`, IDs and non-sensitive status fields. If record-level values are truly needed, use a sandbox with masked data, or get the user's explicit approval and follow the organization's data-handling policy (for example HIPAA, IRS Pub. 1075, SSA agreements or state data classification).
+   - Never save production record data in the project, in git, or in logs the AI reads. Data snapshots go to the organization's approved storage.
    - These need the user's explicit GO for that specific action:
      - `sf project retrieve` from production into your project. A retrieve **overwrites local files**.
      - Any record change, including anonymous Apex, even when it is rolled back. (Mode B only. In Mode A, Claude never changes production records.)
@@ -101,6 +103,7 @@ This skill holds Claude to the habits of a careful release lead.
 | "Prod is like the sandbox" | Check prod's live metadata; sandboxes drift |
 | "I'll write a class for this" | Show the standard and declarative options first (rule 1) |
 | "There's integration code in the sandbox, so deploy it" | Confirm the chosen approach first; it may be a leftover replaced by a standard feature (`checklists/integrations.md`) |
+| "I'll query a few records to see the data" | Use counts, IDs and status fields. Personal data stays out of the AI session |
 | "Just load the data" | Follow `checklists/data-migration.md`: dry run, matching keys, snapshot, reconciliation |
 | "I'll fix it in prod quickly" | No prod action without explicit GO. In Mode A, no prod action by Claude at all |
 | "There's no pipeline file, so I can deploy" | If unsure, ask. Default to Mode A |

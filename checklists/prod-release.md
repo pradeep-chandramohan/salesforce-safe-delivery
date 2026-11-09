@@ -12,8 +12,9 @@ Pick the mode first (see `SKILL.md` → Deployment modes). **If unsure, use Mode
   - **Mode B:** run it in production. It runs DML, so it needs a GO.
   - Caveat: Platform Events set to *Publish Immediately* are **not** rolled back.
   - Caveat: callouts can't run after uncommitted DML.
+  - Log only record IDs and error messages, never field values.
   - Fix bad data first.
-- [ ] **Data snapshot:** export the records the release or the users will change.
+- [ ] **Data snapshot:** export the records the release or the users will change, to the organization's approved storage, not to the project folder, git or the AI session.
 - [ ] **Scheduled jobs:** by default, a scheduled Apex job blocks redeploying the classes it uses. Either turn on *Setup → Deployment Settings → Allow deployments of components when corresponding Apex jobs are pending or in progress*, or plan hotfixes as abort → deploy → reschedule.
 
 ## 1. Read production live (read-only, both modes)

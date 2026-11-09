@@ -16,7 +16,7 @@ This skill holds Claude to the habits of a careful release lead.
 
 | | **Mode A: pipeline / CAB (default)** | **Mode B: direct CLI** |
 |---|---|---|
-| Typical team | Government and regulated programs, enterprises: Git branches, pull requests, a pipeline (Copado, Gearset, DevOps Center, Azure DevOps, GitHub Actions), SIT → UAT → Staging, a change advisory board | Small agencies, nonprofits, single-admin orgs, small consulting engagements with no pipeline |
+| Typical team | Regulated programs and enterprises: Git branches, pull requests, a pipeline (Copado, Gearset, DevOps Center, Azure DevOps, GitHub Actions), SIT → UAT → Staging, a change advisory board | Small agencies, nonprofits, single-admin orgs, small consulting engagements with no pipeline |
 | Claude's role | **Release preparer.** Builds and tests in the sandbox, verifies live, maps the impact, prepares the branch/PR and the **CAB release note**. **Never deploys to, or runs DML in, production** | **Release operator.** Same preparation, then validates and quick-deploys to production, each step after the user's explicit GO |
 | Who deploys to prod | The pipeline or the release manager, after approval (separation of duties) | Claude, after a GO |
 
